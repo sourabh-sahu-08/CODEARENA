@@ -4,9 +4,12 @@ export type HackathonStatus = 'upcoming' | 'registering' | 'live' | 'judging' | 
 
 export interface HackathonState {
     status: HackathonStatus;
-    userRole: 'participant' | 'judge' | 'guest';
+    userRole: 'participant' | 'judge' | 'guest' | 'admin';
     isRegistered: boolean;
     currentTrack: string | null;
+    user: any | null;
+    updates: any[];
+    problems: any[];
     stats: {
         participants: number;
         serverLoad: number;
@@ -18,6 +21,7 @@ export interface HackathonContextType {
     state: HackathonState;
     setStatus: (status: HackathonStatus) => void;
     register: (track: string) => void;
+    logout: () => void;
 }
 
 export const HackathonContext = createContext<HackathonContextType | undefined>(undefined);

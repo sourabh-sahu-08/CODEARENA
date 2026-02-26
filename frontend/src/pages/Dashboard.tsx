@@ -258,19 +258,28 @@ export default function Dashboard() {
                                             <button className="text-primary text-sm font-medium">View All</button>
                                         </div>
                                         <div className="space-y-6">
-                                            {[
-                                                { time: '10:00 AM', title: 'Problem Statements Released', desc: 'Choose your domain and start brainstorming.' },
-                                                { time: '02:30 PM', title: 'Team Matching Session', desc: 'Connect with potential teammates in the lobby.' },
-                                                { time: '05:00 PM', title: 'Coding Round Prep', desc: 'Mock test available on the coding platform.' },
-                                            ].map((item, j) => (
-                                                <div key={j} className="flex gap-4">
-                                                    <div className="text-xs font-mono text-foreground-custom/30 pt-1">{item.time}</div>
-                                                    <div>
-                                                        <h4 className="font-bold text-sm mb-1">{item.title}</h4>
-                                                        <p className="text-foreground-custom/40 text-xs leading-relaxed">{item.desc}</p>
+                                            {state.updates.length > 0 ? (
+                                                state.updates.map((item, j) => (
+                                                    <div key={j} className="flex gap-4">
+                                                        <div className="text-xs font-mono text-foreground-custom/30 pt-1">
+                                                            {new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                        </div>
+                                                        <div>
+                                                            <div className="flex items-center gap-2 mb-1">
+                                                                <h4 className="font-bold text-sm">{item.title}</h4>
+                                                                {item.type === 'critical' && (
+                                                                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                                                                )}
+                                                            </div>
+                                                            <p className="text-foreground-custom/40 text-xs leading-relaxed">{item.description}</p>
+                                                        </div>
                                                     </div>
+                                                ))
+                                            ) : (
+                                                <div className="text-center py-10 text-foreground-custom/20">
+                                                    No recent updates.
                                                 </div>
-                                            ))}
+                                            )}
                                         </div>
                                     </Card>
 

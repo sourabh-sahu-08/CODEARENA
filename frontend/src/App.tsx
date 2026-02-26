@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ExplorationHub from './pages/ExplorationHub';
 import { HackathonProvider } from './context/HackathonContext';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -142,8 +143,16 @@ function App() {
           <Route path="/explore" element={<ExplorationHub />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
         </Routes>
       </HackathonProvider>
     </Router>
