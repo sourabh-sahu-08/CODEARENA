@@ -207,7 +207,7 @@ export default function Dashboard() {
                                                 {state.status} Phase
                                             </span>
                                         </div>
-                                        <h2 className="text-4xl font-black tracking-tight">Command Center <span className="text-gradient">Alex!</span></h2>
+                                        <h2 className="text-4xl font-black tracking-tight">Command Center <span className="text-gradient">sourabh!</span></h2>
                                         <p className="text-foreground-custom/40 text-lg max-w-xl leading-relaxed">
                                             Infrastructure is stable. Your current submission velocity is in the <span className="text-foreground-custom">top 5%</span>.
                                             The {state.currentTrack || 'Main'} track is seeing high activity.
@@ -219,7 +219,7 @@ export default function Dashboard() {
                                     </div>
                                     <div className="w-64 h-64 flex-shrink-0 relative z-10">
                                         <img
-                                            src="file:///C:/Users/Sourabh/.gemini/antigravity/brain/e6989267-4092-4ebe-90c1-b94b56b4ee94/hackathon_dashboard_empty_state_1772096182842.png"
+                                            src="https://source.unsplash.com/400x300/?dashboard,technology"
                                             alt="Dashboard Illustration"
                                             className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(var(--primary-custom-rgb),0.3)] animate-float"
                                         />
@@ -287,9 +287,10 @@ export default function Dashboard() {
                                         <h3 className="font-bold text-lg mb-6">Team Formation</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'Alex Johnson', role: 'Full Stack', Initial: 'AJ' },
-                                                { name: 'Sarah Chen', role: 'UI Designer', Initial: 'SC' },
-                                                { name: 'Marcus Bell', role: 'DevOps', Initial: 'MB' },
+                                                { name: 'sourabh', role: 'Full Stack', Initial: 'SO' },
+                                            { name: 'shashank', role: 'UI Designer', Initial: 'SH' },
+                                            { name: 'yashwant', role: 'DevOps', Initial: 'YA' },
+                                            { name: 'vaibhav', role: 'Security', Initial: 'VA' },
                                             ].map((member, k) => (
                                                 <div key={k} className="flex items-center justify-between p-3 rounded-xl bg-foreground-custom/5 border border-border-custom">
                                                     <div className="flex items-center gap-3">

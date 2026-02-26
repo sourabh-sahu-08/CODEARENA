@@ -37,7 +37,7 @@ export default function CertificationUI() {
                             </div>
 
                             <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-foreground-custom py-4 font-serif italic">
-                                Alex Johnson
+                                sourabh
                             </h1>
 
                             <p className="text-foreground-custom/70 max-w-2xl mx-auto leading-relaxed">
@@ -49,7 +49,7 @@ export default function CertificationUI() {
                         <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-end relative z-10 mt-12 gap-8 sm:gap-0">
                             <div className="text-center sm:text-left space-y-1">
                                 <div className="h-12 w-32 border-b border-indigo-500/30 mb-2 mx-auto sm:mx-0" />
-                                <p className="text-xs font-bold text-foreground-custom">James Wilson</p>
+                                <p className="text-xs font-bold text-foreground-custom">shashank</p>
                                 <p className="text-[10px] uppercase tracking-widest text-foreground-custom/30">Program Director</p>
                             </div>
 

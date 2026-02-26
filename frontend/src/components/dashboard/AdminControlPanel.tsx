@@ -27,9 +27,9 @@ const nationalStats = [
 
 const adminEvents = [
     { time: '14:20', action: 'System Backup', user: 'Auto-Bot', status: 'Success' },
-    { time: '13:45', action: 'Scale Out: Asia-South', user: 'Admin_Raj', status: 'Pending' },
+    { time: '13:45', action: 'Scale Out: Asia-South', user: 'Admin_vaibhav', status: 'Pending' },
     { time: '12:10', action: 'Phase Transition: Live', user: 'System', status: 'Success' },
-    { time: '09:00', action: 'Load Balancer Update', user: 'Admin_Sarah', status: 'Success' },
+    { time: '09:00', action: 'Load Balancer Update', user: 'Admin_shashank', status: 'Success' },
 ];
 
 export default function AdminControlPanel() {

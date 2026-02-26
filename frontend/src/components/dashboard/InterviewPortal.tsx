@@ -30,7 +30,7 @@ export default function InterviewPortal() {
                         <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent z-10 flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-green-500" />
-                                <span className="text-sm font-semibold text-white">Alex Johnson (You)</span>
+                                <span className="text-sm font-semibold text-white">sourabh (You)</span>
                             </div>
                             <div className="flex gap-2">
                                 <div className="p-1.5 rounded-lg bg-white/10 backdrop-blur-md text-white"><Mic size={14} /></div>
@@ -53,7 +53,7 @@ export default function InterviewPortal() {
                         <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent z-10">
                             <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-foreground-custom/20" />
-                                <span className="text-sm font-semibold text-white">Dr. Sarah Miller (Judge)</span>
+                                <span className="text-sm font-semibold text-white">shashank (Judge)</span>
                             </div>
                         </div>
                         <div className="absolute inset-0 flex items-center justify-center">

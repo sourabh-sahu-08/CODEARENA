@@ -41,7 +41,8 @@ export default function Register() {
                 throw new Error(data.message || 'Registration failed');
             }
 
-            navigate('/login');
+            // go straight to dashboard after successful registration
+            navigate('/dashboard');
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -79,7 +80,7 @@ export default function Register() {
                                     value={formData.firstName}
                                     onChange={handleChange}
                                     className="w-full bg-background-custom/50 border border-border-custom rounded-xl py-2.5 px-4 focus:ring-2 focus:ring-primary/50 outline-none transition-all"
-                                    placeholder="John"
+                                    placeholder="sourabh"
                                 />
                             </div>
                             <div className="space-y-2">
@@ -91,7 +92,7 @@ export default function Register() {
                                     value={formData.lastName}
                                     onChange={handleChange}
                                     className="w-full bg-background-custom/50 border border-border-custom rounded-xl py-2.5 px-4 focus:ring-2 focus:ring-primary/50 outline-none transition-all"
-                                    placeholder="Doe"
+                                    placeholder="shashank"
                                 />
                             </div>
                         </div>

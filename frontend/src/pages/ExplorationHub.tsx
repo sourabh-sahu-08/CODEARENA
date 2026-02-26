@@ -11,7 +11,7 @@ const opportunities = [
         prize: '₹10,00,000',
         timeLeft: '12 Days',
         participants: '4.5k+',
-        image: 'file:///C:/Users/Sourabh/.gemini/antigravity/brain/e6989267-4092-4ebe-90c1-b94b56b4ee94/hero_india_tech_hackathon_v2_1772097724226.png',
+        image: 'https://source.unsplash.com/400x300/?artificial-intelligence,code',
         track: 'Artificial Intelligence'
     },
     {
@@ -21,7 +21,7 @@ const opportunities = [
         prize: 'Hiring + ₹5,00,000',
         timeLeft: '5 Days',
         participants: '12k+',
-        image: 'file:///C:/Users/Sourabh/.gemini/antigravity/brain/e6989267-4092-4ebe-90c1-b94b56b4ee94/fintech_track_visual_1772098050347.png',
+        image: 'https://source.unsplash.com/400x300/?fintech,blockchain',
         track: 'Web3 & Payments'
     },
     {
@@ -31,7 +31,7 @@ const opportunities = [
         prize: '₹2,50,000 + Incubation',
         timeLeft: '22 Days',
         participants: '1.2k+',
-        image: 'file:///C:/Users/Sourabh/.gemini/antigravity/brain/e6989267-4092-4ebe-90c1-b94b56b4ee94/healthtech_track_visual_1772098073514.png',
+        image: 'https://source.unsplash.com/400x300/?healthcare,technology',
         track: 'HealthTech'
     }
 ];

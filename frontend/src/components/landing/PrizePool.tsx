@@ -92,7 +92,7 @@ export const PrizePool = () => {
                             <div className="absolute inset-0 bg-primary-custom/20 blur-[120px] rounded-full group-hover:bg-primary-custom/30 transition-all duration-700" />
 
                             <img
-                                src="file:///C:/Users/Sourabh/.gemini/antigravity/brain/e6989267-4092-4ebe-90c1-b94b56b4ee94/prize_trophy_premium_1772098102079.png"
+                                src="https://source.unsplash.com/400x300/?trophy,award"
                                 alt="Premium Trophy"
                                 className="relative z-10 w-full animate-float"
                             />

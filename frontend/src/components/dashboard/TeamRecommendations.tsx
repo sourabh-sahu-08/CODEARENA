@@ -4,25 +4,32 @@ import { Button, Card } from '../ui';
 
 const recommendations = [
     {
-        name: 'Sarah Chen',
+        name: 'sourabh',
         skills: ['React', 'Node.js', 'AWS'],
         match: 98,
         interests: ['FinTech', 'Scalability'],
         experience: 'Expert'
     },
     {
-        name: 'Marcus Bell',
+        name: 'shashank',
         skills: ['Python', 'TensorFlow', 'FastAPI'],
         match: 92,
         interests: ['AI/ML', 'Data Science'],
         experience: 'Intermediate'
     },
     {
-        name: 'Elena Rodriguez',
+        name: 'yashwant',
         skills: ['Vue', 'D3.js', 'UI/UX'],
         match: 85,
         interests: ['Data Viz', 'Social Impact'],
         experience: 'Senior'
+    },
+    {
+        name: 'vaibhav',
+        skills: ['Rust', 'Blockchain', 'Solidity'],
+        match: 80,
+        interests: ['Blockchain', 'Security'],
+        experience: 'Intermediate'
     }
 ];
 

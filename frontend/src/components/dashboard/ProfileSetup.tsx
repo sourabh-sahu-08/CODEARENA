@@ -39,7 +39,7 @@ export default function ProfileSetup() {
                                 <Plus size={16} />
                             </button>
                         </div>
-                        <h3 className="text-xl font-bold">Alex Johnson</h3>
+                        <h3 className="text-xl font-bold">sourabh</h3>
                         <p className="text-slate-500 text-sm">Full Stack Developer</p>
                         <div className="mt-6 flex justify-center gap-4">
                             <Github size={18} className="text-slate-400 hover:text-white cursor-pointer transition-colors" />
@@ -77,7 +77,7 @@ export default function ProfileSetup() {
                                 <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Full Name</label>
                                 <input
                                     type="text"
-                                    defaultValue="Alex Johnson"
+                                    defaultValue="sourabh"
                                     className="w-full bg-slate-950/50 border border-white/5 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-primary-custom/50"
                                 />
                             </div>

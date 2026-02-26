@@ -24,14 +24,14 @@ const seed = async () => {
 
         // Seed Users
         const admin = new User({
-            name: 'System Admin',
+            name: 'sourabh',
             email: 'admin@codearena.com',
             password: hashedPassword,
             role: 'admin',
         });
 
         const user = new User({
-            name: 'Test Hacker',
+            name: 'shashank',
             email: 'hacker@codearena.com',
             password: hashedPassword,
             role: 'user',

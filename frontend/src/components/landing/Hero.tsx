@@ -17,7 +17,7 @@ export const Hero = () => {
             <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-background-custom/80 via-background-custom/40 to-background-custom z-10" />
                 <img
-                    src="file:///C:/Users/Sourabh/.gemini/antigravity/brain/e6989267-4092-4ebe-90c1-b94b56b4ee94/hero_india_tech_hackathon_v2_1772097724226.png"
+                    src="https://source.unsplash.com/1920x1080/?technology,futuristic"
                     alt="Bharat Futuristic Hackathon"
                     className="w-full h-full object-cover opacity-40 scale-110"
                 />
