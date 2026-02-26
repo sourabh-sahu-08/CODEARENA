@@ -3,7 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Save, MonitorStop, Terminal, ChevronRight, CheckCircle2, FileText } from 'lucide-react';
 import { Button, Card } from '../ui';
 
+import { useHackathon } from '../../context/HackathonContextState';
+
 export default function CodingIDE() {
+    const { state, submitCode } = useHackathon();
     const [code, setCode] = useState(`// Two Sum Problem
 // Input: nums = [2,7,11,15], target = 9
 // Output: [0,1]
@@ -21,6 +24,33 @@ function solve(nums, target) {
 }`);
 
     const [activeTab, setActiveTab] = useState('description');
+    const [isRunning, setIsRunning] = useState(false);
+    const [output, setOutput] = useState<any[]>([]);
+
+    const handleRun = async () => {
+        setIsRunning(true);
+        setOutput([{ type: 'info', message: 'Running test cases...' }]);
+
+        try {
+            const result = await submitCode(code, 'javascript');
+            setOutput([
+                { type: 'info', message: result.message },
+                { type: 'pending', message: 'Executing in sandbox...' }
+            ]);
+
+            // Wait for simulated result from DB (polling through context)
+            setTimeout(() => {
+                setOutput(prev => [
+                    ...prev,
+                    { type: 'system', message: 'Execution complete.' }
+                ]);
+                setIsRunning(false);
+            }, 3000);
+        } catch (error) {
+            setOutput([{ type: 'error', message: 'Submission failed. Please check connection.' }]);
+            setIsRunning(false);
+        }
+    };
 
     return (
         <div className="h-[calc(100vh-120px)] flex flex-col gap-4">
@@ -37,9 +67,14 @@ function solve(nums, target) {
                         <Save size={14} />
                         Auto-saved
                     </Button>
-                    <Button size="sm" className="flex-1 sm:flex-none flex items-center justify-center gap-2 text-[10px] sm:text-xs px-2 sm:px-3 bg-green-600 hover:bg-green-700">
-                        <Play size={14} />
-                        Run Tests
+                    <Button
+                        size="sm"
+                        onClick={handleRun}
+                        disabled={isRunning}
+                        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 text-[10px] sm:text-xs px-2 sm:px-3 bg-green-600 hover:bg-green-700 ${isRunning ? 'opacity-50' : ''}`}
+                    >
+                        {isRunning ? <Terminal className="animate-spin" size={14} /> : <Play size={14} />}
+                        {isRunning ? 'Executing...' : 'Run Submissions'}
                     </Button>
                 </div>
             </div>
@@ -86,14 +121,6 @@ function solve(nums, target) {
                                             Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
                                         </pre>
                                     </div>
-                                    <div className="space-y-2">
-                                        <p className="text-xs font-bold text-foreground-custom/40">Constraints:</p>
-                                        <ul className="text-xs text-foreground-custom/40 list-disc ml-4 space-y-1">
-                                            <li>2 &lt;= nums.length &lt;= 10⁴</li>
-                                            <li>-10⁹ &lt;= nums[i] &lt;= 10⁹</li>
-                                            <li>-10⁹ &lt;= target &lt;= 10⁹</li>
-                                        </ul>
-                                    </div>
                                 </motion.div>
                             ) : (
                                 <motion.div
@@ -101,10 +128,29 @@ function solve(nums, target) {
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: 10 }}
-                                    className="p-12 text-center"
+                                    className="space-y-3"
                                 >
-                                    <FileText className="mx-auto mb-4 text-foreground-custom/20" size={48} />
-                                    <p className="text-foreground-custom/40 text-sm">No submissions yet.</p>
+                                    {state.submissions.length > 0 ? (
+                                        state.submissions.map((sub, idx) => (
+                                            <div key={idx} className="p-3 rounded-xl bg-foreground-custom/5 border border-border-custom flex items-center justify-between">
+                                                <div className="flex items-center gap-3">
+                                                    <div className={`p-2 rounded-lg ${sub.status === 'success' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                                                        {sub.status === 'success' ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-xs font-bold capitalize">{sub.status}</p>
+                                                        <p className="text-[10px] text-foreground-custom/30">{new Date(sub.timestamp).toLocaleString()}</p>
+                                                    </div>
+                                                </div>
+                                                <span className="text-[10px] font-mono text-foreground-custom/40">{sub.language}</span>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="p-12 text-center">
+                                            <FileText className="mx-auto mb-4 text-foreground-custom/20" size={48} />
+                                            <p className="text-foreground-custom/40 text-sm">No submissions yet.</p>
+                                        </div>
+                                    )}
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -133,27 +179,41 @@ function solve(nums, target) {
                         />
                     </Card>
 
-                    <Card className="h-1/3 bg-background-custom/80 border-t-2 border-primary/20">
+                    <Card className="h-1/3 bg-background-custom/80 border-t-2 border-primary/20 overflow-y-auto">
                         <div className="flex items-center gap-2 mb-4 text-foreground-custom/40">
                             <Terminal size={16} />
                             <span className="text-xs font-bold uppercase tracking-wider">Console Output</span>
                         </div>
                         <div className="space-y-2 font-mono text-sm">
-                            <div className="flex items-center gap-2 text-green-500">
-                                <CheckCircle2 size={14} />
-                                <span>Test Case 1 Passed!</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-foreground-custom/40">
-                                <ChevronRight size={14} />
-                                <span>Input: [2,7,11,15], target: 9</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-foreground-custom/40">
-                                <ChevronRight size={14} />
-                                <span>Expected: [0,1], Output: [0,1]</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-foreground-custom/20 mt-4 italic">
-                                <span>Waiting for next run...</span>
-                            </div>
+                            {output.length > 0 ? (
+                                output.map((log, i) => (
+                                    <div key={i} className={`flex items-start gap-2 ${log.type === 'error' ? 'text-red-500' :
+                                            log.type === 'success' ? 'text-green-500' :
+                                                'text-foreground-custom/60'
+                                        }`}>
+                                        <ChevronRight size={14} className="mt-1" />
+                                        <span>{log.message}</span>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="flex items-center gap-2 text-foreground-custom/20 italic">
+                                    <span>Waiting for code to run...</span>
+                                </div>
+                            )}
+
+                            {/* Most recent completed submission status */}
+                            {state.submissions[0] && !isRunning && (
+                                <div className={`mt-4 p-3 rounded-lg border ${state.submissions[0].status === 'success' ? 'bg-green-500/10 border-green-500/20 text-green-500' : 'bg-red-500/10 border-red-500/20 text-red-500'
+                                    }`}>
+                                    <div className="flex items-center gap-2 font-bold mb-1">
+                                        {state.submissions[0].status === 'success' ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
+                                        <span>{state.submissions[0].status.toUpperCase()}</span>
+                                    </div>
+                                    <pre className="text-xs whitespace-pre-wrap opacity-80">
+                                        {state.submissions[0].results.stdout || state.submissions[0].results.stderr}
+                                    </pre>
+                                </div>
+                            )}
                         </div>
                     </Card>
                 </div>
@@ -161,3 +221,6 @@ function solve(nums, target) {
         </div>
     );
 }
+
+// Additional icons needed
+import { XCircle, AlertCircle } from 'lucide-react';

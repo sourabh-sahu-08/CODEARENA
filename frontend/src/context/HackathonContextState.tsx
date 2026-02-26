@@ -10,6 +10,7 @@ export interface HackathonState {
     user: any | null;
     updates: any[];
     problems: any[];
+    submissions: any[];
     stats: {
         participants: number;
         serverLoad: number;
@@ -22,6 +23,7 @@ export interface HackathonContextType {
     setStatus: (status: HackathonStatus) => void;
     register: (track: string) => void;
     logout: () => void;
+    submitCode: (code: string, language: string, problemId?: string) => Promise<any>;
 }
 
 export const HackathonContext = createContext<HackathonContextType | undefined>(undefined);

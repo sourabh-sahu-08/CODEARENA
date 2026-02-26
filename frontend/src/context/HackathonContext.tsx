@@ -14,6 +14,7 @@ export const HackathonProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             user,
             updates: [],
             problems: [],
+            submissions: [],
             stats: {
                 participants: 12450,
                 serverLoad: 42,
@@ -50,6 +51,13 @@ export const HackathonProvider: React.FC<{ children: React.ReactNode }> = ({ chi
                     const problemsData = await problemsRes.json();
                     setState(prev => ({ ...prev, problems: problemsData }));
                 }
+
+                // Fetch History
+                const subsRes = await fetch('http://localhost:5000/api/submissions/history', { headers });
+                if (subsRes.ok) {
+                    const subsData = await subsRes.json();
+                    setState(prev => ({ ...prev, submissions: subsData }));
+                }
             } catch (error) {
                 console.error('Failed to fetch real-time data:', error);
             }
@@ -59,6 +67,23 @@ export const HackathonProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         const interval = setInterval(fetchData, 15000);
         return () => clearInterval(interval);
     }, [state.user]);
+
+    const submitCode = async (code: string, language: string, problemId?: string) => {
+        const token = localStorage.getItem('codearena_token');
+        if (!token) throw new Error('Not authenticated');
+
+        const response = await fetch('http://localhost:5000/api/submissions/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ code, language, problemId })
+        });
+
+        if (!response.ok) throw new Error('Submission failed');
+        return await response.json();
+    };
 
     const setStatus = (status: HackathonStatus) => {
         setState(prev => ({ ...prev, status }));
@@ -80,7 +105,7 @@ export const HackathonProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     };
 
     return (
-        <HackathonContext.Provider value={{ state, setStatus, register, logout }}>
+        <HackathonContext.Provider value={{ state, setStatus, register, logout, submitCode }}>
             {children}
         </HackathonContext.Provider>
     );
